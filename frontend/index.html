@@ -1,0 +1,534 @@
+﻿
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Telugu AI | Intelligent Translator</title>
+
+<style>
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800&family=Outfit:wght@400;500;600;700;800&display=swap');
+
+:root {
+  --bg:#0b1020;
+  --panel:#131b30;
+  --panel2:#19243b;
+  --text:#edf2ff;
+  --muted:#929eb8;
+  --accent:#9c8cff;
+  --cyan:#63d8d1;
+  --border:#28344d;
+}
+
+* { box-sizing:border-box; }
+
+body {
+  margin:0;
+  background:radial-gradient(ellipse at 15% 0%,#22214b 0,transparent 38%),var(--bg);
+  color:var(--text);
+  font-family:'DM Sans',sans-serif;
+  min-height:100vh;
+}
+
+header {
+  height:76px;
+  border-bottom:1px solid var(--border);
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  padding:0 max(calc((100% - 1120px)/2),24px);
+}
+
+.logo {
+  font-family:Outfit;
+  font-size:22px;
+  font-weight:700;
+}
+
+.logo span { color:var(--accent); }
+
+.status {
+  font-size:12px;
+  color:var(--cyan);
+  border:1px solid #285a5a;
+  background:#163638;
+  padding:7px 12px;
+  border-radius:30px;
+}
+
+main {
+  max-width:1000px;
+  margin:0 auto;
+  padding:62px 24px 80px;
+}
+
+.hero {
+  text-align:center;
+  margin-bottom:38px;
+}
+
+.eyebrow {
+  color:var(--cyan);
+  font-size:12px;
+  font-weight:700;
+  letter-spacing:2px;
+  text-transform:uppercase;
+}
+
+h1 {
+  font-family:Outfit;
+  font-size:clamp(34px,6vw,54px);
+  line-height:1.1;
+  margin:14px 0 12px;
+}
+
+h1 span {
+  background:linear-gradient(90deg,#a99bff,#66dcd2);
+  background-clip:text;
+  color:transparent;
+}
+
+.hero p {
+  color:var(--muted);
+  font-size:15px;
+  line-height:1.7;
+}
+
+.workspace {
+  background:var(--panel);
+  border:1px solid var(--border);
+  border-radius:20px;
+  padding:25px;
+  box-shadow:0 24px 80px #0005;
+}
+
+.section-head {
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  margin-bottom:13px;
+}
+
+.section-head label {
+  font-size:13px;
+  font-weight:700;
+  color:#dce4fa;
+}
+
+.hint {
+  font-size:12px;
+  color:var(--muted);
+}
+
+textarea {
+  width:100%;
+  resize:vertical;
+  min-height:130px;
+  background:#0d1528;
+  border:1px solid var(--border);
+  border-radius:12px;
+  padding:17px;
+  color:var(--text);
+  font:15px 'DM Sans';
+  outline:none;
+  line-height:1.7;
+}
+
+textarea:focus {
+  border-color:var(--accent);
+  box-shadow:0 0 0 3px #9c8cff18;
+}
+
+textarea::placeholder { color:#64718b; }
+
+.previous { margin-top:22px; }
+.previous textarea { min-height:75px; }
+
+.actions {
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:15px;
+  margin-top:20px;
+}
+
+.note {
+  font-size:12px;
+  color:var(--muted);
+}
+
+button {
+  border:0;
+  cursor:pointer;
+  font:600 14px 'DM Sans';
+  border-radius:10px;
+  padding:13px 21px;
+}
+
+.primary {
+  background:linear-gradient(100deg,#9b88ff,#6c9cf8);
+  color:#101326;
+  min-width:170px;
+}
+
+.primary:disabled {
+  opacity:.55;
+  cursor:wait;
+}
+
+.secondary {
+  background:#25314a;
+  color:#dce4fa;
+  padding:9px 13px;
+}
+
+.results {
+  display:none;
+  margin-top:24px;
+}
+
+.results.show { display:block; }
+
+.results-title {
+  font:600 20px Outfit;
+  margin:0 0 15px;
+}
+
+.result-grid {
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:14px;
+}
+
+.result-card {
+  background:var(--panel2);
+  border:1px solid var(--border);
+  border-radius:14px;
+  padding:19px;
+  min-width:0;
+}
+
+.result-card.wide { grid-column:1/-1; }
+
+.card-label {
+  font-size:11px;
+  color:var(--muted);
+  text-transform:uppercase;
+  letter-spacing:1.2px;
+  font-weight:700;
+  margin-bottom:13px;
+}
+
+.result-value {
+  font-size:18px;
+  line-height:1.6;
+  overflow-wrap:anywhere;
+}
+
+.telugu {
+  font-size:25px;
+  font-family:'Noto Sans Telugu','Nirmala UI',sans-serif;
+}
+
+.copy-row {
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:10px;
+}
+
+.copy-btn {
+  font-size:11px;
+  padding:7px 10px;
+}
+
+.analysis-item {
+  background:#101a2e;
+  border-radius:11px;
+  padding:18px;
+}
+
+.analysis-name {
+  font-size:12px;
+  color:var(--muted);
+  margin-bottom:8px;
+}
+
+.analysis-value {
+  font:600 22px Outfit;
+  text-transform:capitalize;
+}
+
+.meter {
+  height:5px;
+  background:#2b3650;
+  border-radius:8px;
+  margin-top:13px;
+  overflow:hidden;
+}
+
+.meter span {
+  display:block;
+  height:100%;
+  background:linear-gradient(90deg,var(--accent),var(--cyan));
+  border-radius:8px;
+}
+
+.confidence {
+  font-size:11px;
+  color:var(--muted);
+  margin-top:8px;
+}
+
+.context-result {
+  font-size:14px;
+  line-height:1.6;
+  color:#dce4fa;
+}
+
+.error {
+  display:none;
+  background:#512a36;
+  color:#ffc5cf;
+  border:1px solid #874353;
+  padding:13px;
+  border-radius:10px;
+  margin-top:15px;
+  font-size:13px;
+}
+
+.error.show { display:block; }
+
+footer {
+  text-align:center;
+  color:#65718a;
+  font-size:12px;
+  margin-top:28px;
+}
+
+@media(max-width:650px) {
+  main { padding:42px 15px; }
+  .workspace { padding:17px; }
+  .result-grid { grid-template-columns:1fr; }
+  .result-card.wide { grid-column:auto; }
+  .actions {
+    align-items:stretch;
+    flex-direction:column;
+  }
+  .primary { width:100%; }
+  header { padding:0 17px; }
+}
+</style>
+</head>
+
+<body>
+
+<header>
+  <div class="logo">telugu<span>.ai</span></div>
+  <div class="status">● AI ENGINE ONLINE</div>
+</header>
+
+<main>
+
+<section class="hero">
+  <div class="eyebrow">AI-powered language intelligence</div>
+  <h1>Telugu, understood <span>better.</span></h1>
+  <p>Translate Roman Telugu, understand its meaning, and explore the tone behind every message.</p>
+</section>
+
+<section class="workspace">
+
+  <div class="section-head">
+    <label for="message">Your message</label>
+    <span class="hint">Romanised Telugu</span>
+  </div>
+
+  <textarea id="message" placeholder="Type in English letters... e.g. namaskaram, ela unnav?"></textarea>
+
+  <div class="previous">
+    <div class="section-head">
+      <label for="previous">Previous message <span class="hint">(optional)</span></label>
+      <span class="hint">For context analysis</span>
+    </div>
+
+    <textarea id="previous" placeholder="Enter the previous Telugu message here..."></textarea>
+  </div>
+
+  <div class="actions">
+    <span class="note">Powered by IndicXlit · IndicTrans2 · MuRIL</span>
+    <button class="primary" id="process">Analyse message →</button>
+  </div>
+
+  <div class="error" id="error"></div>
+
+</section>
+
+<section class="results" id="results">
+
+  <h2 class="results-title">Analysis results</h2>
+
+  <div class="result-grid">
+
+    <article class="result-card">
+      <div class="card-label">Telugu transliteration</div>
+      <div class="copy-row">
+        <div class="result-value telugu" id="telugu">—</div>
+        <button class="secondary copy-btn" data-copy="telugu">Copy</button>
+      </div>
+    </article>
+
+    <article class="result-card">
+      <div class="card-label">English translation</div>
+      <div class="copy-row">
+        <div class="result-value" id="english">—</div>
+        <button class="secondary copy-btn" data-copy="english">Copy</button>
+      </div>
+    </article>
+
+    <article class="result-card wide">
+      <div class="card-label">Tone detection</div>
+
+      <div class="analysis-item">
+        <div class="analysis-name">Detected tone</div>
+        <div class="analysis-value" id="tone">—</div>
+        <div class="meter">
+          <span id="tone-meter" style="width:0%"></span>
+        </div>
+        <div class="confidence" id="tone-confidence"></div>
+      </div>
+    </article>
+
+    <article class="result-card wide" id="context-card" style="display:none">
+      <div class="card-label">Context analysis</div>
+      <div class="context-result" id="context-result"></div>
+    </article>
+
+  </div>
+</section>
+
+<footer>Telugu AI · Local AI processing · No paid translation APIs</footer>
+
+</main>
+
+<script>
+const $ = id => document.getElementById(id);
+const button = $('process');
+
+button.addEventListener('click', async () => {
+
+  const text = $('message').value.trim();
+
+  if (!text) {
+    $('error').textContent = 'Please enter a Telugu message first.';
+    $('error').classList.add('show');
+    $('message').focus();
+    return;
+  }
+
+  button.disabled = true;
+  button.textContent = 'Analysing...';
+
+  $('error').classList.remove('show');
+  $('results').classList.remove('show');
+
+  try {
+
+    const response = await fetch('/api/process', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json; charset=utf-8',
+        'Accept': 'application/json'
+      },
+      body: JSON.stringify({
+        text: text,
+        previous_message: $('previous').value.trim()
+      })
+    });
+
+    const buffer = await response.arrayBuffer();
+
+    const responseText = new TextDecoder('utf-8', {
+      fatal: true
+    }).decode(buffer);
+
+    const data = JSON.parse(responseText);
+
+    if (!response.ok) {
+      throw new Error(data.detail || 'Unable to process this message.');
+    }
+
+    $('telugu').textContent = data.telugu || '—';
+    $('english').textContent = data.english || '—';
+    $('tone').textContent = data.tone || '—';
+
+    const confidence = Number(data.tone_confidence || 0);
+
+    $('tone-meter').style.width =
+      Math.min(100, Math.max(0, confidence)) + '%';
+
+    $('tone-confidence').textContent =
+      confidence.toFixed(2) + '% model confidence';
+
+    const context = data.context_analysis;
+
+    if (context) {
+      $('context-card').style.display = 'block';
+
+      $('context-result').textContent =
+        context.pair_class.replace('_', ' ') +
+        ' · ' + context.confidence + '% model confidence';
+
+    } else {
+      $('context-card').style.display = 'none';
+    }
+
+    $('results').classList.add('show');
+
+    $('results').scrollIntoView({
+      behavior:'smooth',
+      block:'start'
+    });
+
+  } catch (error) {
+
+    console.error('Processing error:', error);
+
+    $('error').textContent =
+      'Error: ' + error.message;
+
+    $('error').classList.add('show');
+
+  } finally {
+
+    button.disabled = false;
+    button.textContent = 'Analyse message →';
+
+  }
+
+});
+
+document.querySelectorAll('[data-copy]').forEach(btn => {
+
+  btn.addEventListener('click', async () => {
+
+    const value = $(btn.dataset.copy).textContent;
+
+    try {
+      await navigator.clipboard.writeText(value);
+      btn.textContent = 'Copied!';
+
+      setTimeout(() => {
+        btn.textContent = 'Copy';
+      }, 1200);
+
+    } catch {
+      btn.textContent = 'Copy failed';
+    }
+
+  });
+
+});
+</script>
+
+</body>
+</html>
