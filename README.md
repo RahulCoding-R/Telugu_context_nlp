@@ -1,4 +1,4 @@
-\# Telugu Context AI
+﻿# Telugu Context AI
 
 
 
@@ -6,25 +6,25 @@ A Telugu language processing application that combines transliteration, translat
 
 
 
-\## Features
+## Features
 
 
 
-\- \*\*Telugu Transliteration\*\* – Converts Romanized Telugu input into Telugu script using IndicXlit.
+- **Telugu Transliteration** – Converts Romanized Telugu input into Telugu script using IndicXlit.
 
-\- \*\*Telugu to English Translation\*\* – Translates Telugu text into English using IndicTrans2.
+- **Telugu to English Translation** – Translates Telugu text into English using IndicTrans2.
 
-\- \*\*Tone Detection\*\* – Detects conversational emotions and tones using a fine-tuned MuRIL model.
+- **Tone Detection** – Detects conversational emotions and tones using a fine-tuned MuRIL model.
 
-\- \*\*Context-Aware Tone Analysis\*\* – Uses Gemini when previous conversational context is provided, allowing tone to be interpreted in relation to the conversation.
+- **Context-Aware Tone Analysis** – Uses Gemini when previous conversational context is provided, allowing tone to be interpreted in relation to the conversation.
 
-\- \*\*Context Classification\*\* – Analyzes the relationship between the previous message and the current message using a trained context model.
+- **Context Classification** – Analyzes the relationship between the previous message and the current message using a trained context model.
 
-\- \*\*Web Interface\*\* – Simple interface for entering messages and viewing Telugu text, English translation, detected tone, and contextual analysis.
+- **Web Interface** – Simple interface for entering messages and viewing Telugu text, English translation, detected tone, and contextual analysis.
 
 
 
-\## System Architecture
+## System Architecture
 
 
 
@@ -32,31 +32,31 @@ The application uses two separate backend services.
 
 
 
-\### Main Backend
+### Main Backend
 
 
 
-\- Framework: FastAPI
+- Framework: FastAPI
 
-\- Port: `8000`
+- Port: `8000`
 
-\- Handles translation, tone detection, context analysis, and frontend requests.
-
-
-
-\### Transliteration Service
+- Handles translation, tone detection, context analysis, and frontend requests.
 
 
 
-\- Framework: Flask
-
-\- Port: `5001`
-
-\- Handles Romanized Telugu transliteration using IndicXlit.
+### Transliteration Service
 
 
 
-\### Processing Pipeline
+- Framework: Flask
+
+- Port: `5001`
+
+- Handles Romanized Telugu transliteration using IndicXlit.
+
+
+
+### Processing Pipeline
 
 
 
@@ -80,33 +80,33 @@ The application uses two separate backend services.
 
 
 
-\## Technology Stack
+## Technology Stack
 
 
 
-\- Python
+- Python
 
-\- FastAPI
+- FastAPI
 
-\- Flask
+- Flask
 
-\- PyTorch
+- PyTorch
 
-\- Transformers
+- Transformers
 
-\- IndicXlit
+- IndicXlit
 
-\- IndicTrans2
+- IndicTrans2
 
-\- MuRIL
+- MuRIL
 
-\- Google Gemini API
+- Google Gemini API
 
-\- HTML, CSS, JavaScript
+- HTML, CSS, JavaScript
 
 
 
-\## Project Structure
+## Project Structure
 
 
 
@@ -114,51 +114,51 @@ The application uses two separate backend services.
 
 TELUGU\_CONTEXT\_AI/
 
-│
+â”‚
 
-├── backend/
+â”œâ”€â”€ backend/
 
-│   ├── main.py
+â”‚   â”œâ”€â”€ main.py
 
-│   ├── models.py
+â”‚   â”œâ”€â”€ models.py
 
-│   ├── translation.py
+â”‚   â”œâ”€â”€ translation.py
 
-│   ├── transliteration.py
+â”‚   â”œâ”€â”€ transliteration.py
 
-│   ├── xlit\_service.py
+â”‚   â”œâ”€â”€ xlit\_service.py
 
-│   └── test\_models.py
+â”‚   â””â”€â”€ test\_models.py
 
-│
+â”‚
 
-├── frontend/
+â”œâ”€â”€ frontend/
 
-│   └── index.html
+â”‚   â””â”€â”€ index.html
 
-│
+â”‚
 
-├── models/
+â”œâ”€â”€ models/
 
-│   ├── context\_model/
+â”‚   â”œâ”€â”€ context\_model/
 
-│   ├── indictrans2/
+â”‚   â”œâ”€â”€ indictrans2/
 
-│   ├── indicxlit/
+â”‚   â”œâ”€â”€ indicxlit/
 
-│   └── multitask\_model/
+â”‚   â””â”€â”€ multitask\_model/
 
-│
+â”‚
 
-├── requirements.txt
+â”œâ”€â”€ requirements.txt
 
-├── requirements-xlit.txt
+â”œâ”€â”€ requirements-xlit.txt
 
-├── .env.example
+â”œâ”€â”€ .env.example
 
-├── .gitignore
+â”œâ”€â”€ .gitignore
 
-└── start\_app.bat
+â””â”€â”€ start\_app.bat
 
 ```
 
@@ -168,7 +168,7 @@ Model files and virtual environments are not included in this repository.
 
 
 
-\## Environment Requirements
+## Environment Requirements
 
 
 
@@ -198,11 +198,11 @@ Both Python versions are kept separate because the transliteration dependencies 
 
 
 
-\## Installation
+## Installation
 
 
 
-\### 1. Clone the Repository
+### 1. Clone the Repository
 
 
 
@@ -216,7 +216,7 @@ cd Telugu\_context\_nlp
 
 
 
-\### 2. Create the Main Python Environment
+### 2. Create the Main Python Environment
 
 
 
@@ -272,7 +272,7 @@ python -m pip install -r requirements.txt
 
 
 
-\### 3. Create the Transliteration Environment
+### 3. Create the Transliteration Environment
 
 
 
@@ -304,7 +304,7 @@ Install transliteration dependencies:
 
 
 
-\### 4. Configure the Gemini API
+### 4. Configure the Gemini API
 
 
 
@@ -328,7 +328,7 @@ Never commit your actual `.env` file or API key.
 
 
 
-\### 5. Configure Model Files
+### 5. Configure Model Files
 
 
 
@@ -340,13 +340,13 @@ Place the required model files in the corresponding directories under `models/`:
 
 
 
-\- `models/multitask\_model/` – Fine-tuned MuRIL tone detection model
+- `models/multitask\_model/` – Fine-tuned MuRIL tone detection model
 
-\- `models/context\_model/` – Context classification model
+- `models/context\_model/` – Context classification model
 
-\- `models/indictrans2/` – Translation model assets
+- `models/indictrans2/` – Translation model assets
 
-\- `models/indicxlit/` – Transliteration model assets, if required by the local configuration
+- `models/indicxlit/` – Transliteration model assets, if required by the local configuration
 
 
 
@@ -354,7 +354,7 @@ Ensure that the model paths in the backend configuration match the locations of 
 
 
 
-\## Running the Application
+## Running the Application
 
 
 
@@ -362,7 +362,7 @@ The application requires both backend services to be running.
 
 
 
-\### Terminal 1 – Transliteration Service
+### Terminal 1 – Transliteration Service
 
 
 
@@ -390,7 +390,7 @@ http://127.0.0.1:5001
 
 
 
-\### Terminal 2 – Main Backend
+### Terminal 2 – Main Backend
 
 
 
@@ -438,11 +438,11 @@ Alternatively, `start\_app.bat` can be used if configured for the local environm
 
 
 
-\## API
+## API
 
 
 
-\### Endpoint
+### Endpoint
 
 
 
@@ -450,7 +450,7 @@ Alternatively, `start\_app.bat` can be used if configured for the local environm
 
 
 
-\### Request
+### Request
 
 
 
@@ -468,7 +468,7 @@ Alternatively, `start\_app.bat` can be used if configured for the local environm
 
 
 
-\### Parameters
+### Parameters
 
 
 
@@ -482,7 +482,7 @@ Alternatively, `start\_app.bat` can be used if configured for the local environm
 
 
 
-\### Response
+### Response
 
 
 
@@ -492,7 +492,7 @@ Alternatively, `start\_app.bat` can be used if configured for the local environm
 
 &#x20; "input": "ela unnavu",
 
-&#x20; "telugu": "ఎలా ఉన్నావు",
+&#x20; "telugu": "à°Žà°²à°¾ à°‰à°¨à±à°¨à°¾à°µà±",
 
 &#x20; "english": "How are you?",
 
@@ -514,11 +514,11 @@ The response values above are illustrative.
 
 
 
-\## Tone Detection Logic
+## Tone Detection Logic
 
 
 
-\### Without Previous Conversation
+### Without Previous Conversation
 
 
 
@@ -530,7 +530,7 @@ If the model produces an inconclusive prediction, Gemini is used as a fallback.
 
 
 
-\### With Previous Conversation
+### With Previous Conversation
 
 
 
@@ -542,27 +542,29 @@ This allows the interpretation of conversational messages that may depend on con
 
 
 
-\## Notes
+## Notes
 
 
 
-\- The Gemini API is required for context-based tone detection and fallback analysis.
+- The Gemini API is required for context-based tone detection and fallback analysis.
 
-\- Model assets must be available locally before the application can run successfully.
+- Model assets must be available locally before the application can run successfully.
 
-\- The transliteration service and main backend run independently.
+- The transliteration service and main backend run independently.
 
-\- The application is currently configured for local execution on Windows.
+- The application is currently configured for local execution on Windows.
 
-\- API usage and availability are subject to the provider's limits and policies.
+- API usage and availability are subject to the provider's limits and policies.
 
 
 
-\## Disclaimer
+## Disclaimer
 
 
 
 Tone and context predictions are machine-generated interpretations of language. They may not accurately represent the speaker's intended emotion or meaning, especially in informal conversations, sarcasm, slang, or ambiguous messages.
+
+
 
 
 
