@@ -208,9 +208,9 @@ Both Python versions are kept separate because the transliteration dependencies 
 
 ```bash
 
-git clone https://github.com/YOUR\_USERNAME/Telugu-Context-AI.git
+git clone https://github.com/RahulCoding-R/Telugu\_context\_nlp.git
 
-cd Telugu-Context-AI
+cd Telugu\_context\_nlp
 
 ```
 
